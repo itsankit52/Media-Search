@@ -32,7 +32,7 @@ export async function fetchPhoto(query, page = 1, per_page = 20) {
 }
 
 // Fetch Videos from Pexels
-export async function fetchVideo(query, per_page = 10) {
+export async function fetchVideo(query,page =1, per_page = 20) {
   try {
     if (!PEXELS_KEY) {
       throw new Error("Missing Pexels API Key");
@@ -41,7 +41,7 @@ export async function fetchVideo(query, per_page = 10) {
     const res = await axios.get(
       "https://api.pexels.com/videos/search",
       {
-        params: { query, per_page },
+        params: { query, per_page, page },
         headers: {
           Authorization: PEXELS_KEY,
         },

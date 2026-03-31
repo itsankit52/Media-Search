@@ -1,16 +1,15 @@
 import React from 'react'
-
+import { useDispatch } from 'react-redux'
+import { addCollection, addtoast } from '../redux/features/CollectionSlice'
 
 const ResultCard = ({ item }) => {
+
+    const dispatch = useDispatch()
     const addToCollection = (item) => {
 
-        const oldData = JSON.parse(localStorage.getItem('collection')) || []
-        console.log(oldData);
-        // console.log(item);
+        dispatch(addCollection(item))
+        dispatch(addtoast())
 
-        const newData = [...oldData, item]
-        // console.log(newData);
-        localStorage.setItem('collection', JSON.stringify(newData))
     }
     return (
         <div className="
@@ -21,10 +20,11 @@ const ResultCard = ({ item }) => {
             hover:shadow-xl 
             transition-all duration-300 
             group
+            flex flex-col h-full 
         ">
 
             {/* Media */}
-            <div className="w-full h-48 sm:h-52 md:h-56 lg:h-60 overflow-hidden">
+            <div className="w-full h-40 sm:h-40 md:h-40 lg:h-40 overflow-hidden">
                 {item.type === 'photo' && (
                     <img
                         src={item.thumbnail}
@@ -79,6 +79,7 @@ const ResultCard = ({ item }) => {
                     text-sm sm:text-base 
                     font-medium 
                     rounded-lg 
+                    cursor-pointer
                     transition-all duration-200 
                     active:scale-95
                     shadow-md hover:shadow-lg
