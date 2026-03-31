@@ -1,26 +1,59 @@
-import axios from 'axios'
+import axios from "axios";
 
+// Get API keys from Vite env
 const UNSPLASH_KEY = import.meta.env.VITE_UNSPLASH_KEY;
 const PEXELS_KEY = import.meta.env.VITE_PEXELS_KEY;
 
-
-
-
+// Fetch Photos from Unsplash
 export async function fetchPhoto(query, page = 1, per_page = 20) {
-    const res = await axios.get('https://api.unsplash.com/search/photos', {
-        params: { query, page, per_page },
-        headers: { Authorization: `Client-ID ${UNSPLASH_KEY}` }
-    })
+  try {
+    if (!UNSPLASH_KEY) {
+      throw new Error("Missing Unsplash API Key");
+    }
 
-    return res.data
+    const res = await axios.get(
+      "https://api.unsplash.com/search/photos",
+      {
+        params: { query, page, per_page },
+        headers: {
+          Authorization: `Client-ID ${UNSPLASH_KEY}`,
+        },
+      }
+    );
+
+    return res.data;
+  } catch (error) {
+    console.error(
+      "Unsplash Error:",
+      error.response?.data || error.message
+    );
+    return null;
+  }
 }
 
-
+// Fetch Videos from Pexels
 export async function fetchVideo(query, per_page = 10) {
-    const res = await axios.get('https://api.pexels.com/videos/search', {
-        params: { query, per_page },
-        headers: { Authorization: PEXELS_KEY }
-    })
+  try {
+    if (!PEXELS_KEY) {
+      throw new Error("Missing Pexels API Key");
+    }
 
-    return res.data
+    const res = await axios.get(
+      "https://api.pexels.com/videos/search",
+      {
+        params: { query, per_page },
+        headers: {
+          Authorization: PEXELS_KEY,
+        },
+      }
+    );
+
+    return res.data;
+  } catch (error) {
+    console.error(
+      "Pexels Error:",
+      error.response?.data || error.message
+    );
+    return null;
+  }
 }
