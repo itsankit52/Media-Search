@@ -1,0 +1,60 @@
+import React from 'react'
+import SearchBar from '../components/SearchBar'
+import Tabs from '../components/Tabs'
+import ResultGrid from '../components/ResultGrid'
+
+
+const HomePage = () => {
+    return (
+        <div>
+            {/* <div>Media Search</div> */}
+
+            <SearchBar />
+            <Tabs />
+            <ResultGrid />
+        </div>
+    )
+}
+
+export default HomePage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { useSelector } from 'react-redux'
+// import ResultGrid from '../components/ResultGrid'
+// import SearchBar from '../components/SearchBar'
+// import Tabs from '../components/Tabs'
+// const HomePage = () => {
+
+//     const { query } = useSelector((store) => store.search)
+
+
+
+
+//     return (
+//         <div>
+
+//             <SearchBar />
+
+//             {query != '' ? <div><Tabs /><ResultGrid /></div> : ''}
+//         </div>
+//     )
+// }
+
+// export default HomePage
