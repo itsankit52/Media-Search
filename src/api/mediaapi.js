@@ -48,7 +48,7 @@ export async function fetchVideo(query, per_page = 10) {
       }
     );
 
-    return res.data;
+    return res.data; // data
   } catch (error) {
     console.error(
       "Pexels Error:",
