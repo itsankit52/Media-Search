@@ -94,7 +94,7 @@ const About = () => {
                             <h2 className="font-semibold text-gray-800">Future Updates</h2>
                         </div>
                         <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                            I am continuously working on improving this platform and will keep updating this website
+                            Updating this website
                             with new features, better performance, and enhanced user experience in the future.
                         </p>
                     </div>
