@@ -12,7 +12,7 @@ const Tabs = () => {
     const dispatch = useDispatch()
     const activeTab = useSelector((state) => state.search.activeTab)
 
-    // 🔥 Dynamic slider position
+    //Dynamic slider 
     const activeIndex = tabs.findIndex(tab => tab.id === activeTab)
 
     // Handle case where activeTab doesn't exist in tabs
