@@ -87,7 +87,7 @@ const About = () => {
                         </div>
                     </div>
 
-                    {/* Future Updates Card */}
+                    {/* Future Updates information Card */}
                     <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 p-5 border border-gray-100 animate-slideUp">
                         <div className="flex items-center gap-2 mb-2">
                             <span className="text-xl">🚀</span>
