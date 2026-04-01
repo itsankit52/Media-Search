@@ -27,7 +27,7 @@ const CollectionCard = ({ item }) => {
             group
             transform
             hover:-translate-y-1
-            ${isRemoving ? 'animate-fadeOut scale-95' : ''}
+            ${isRemoving ? 'animate-fadeOut scale-90' : ''}
         `}>
             {/* Media Container */}
             <div className="relative w-full h-40 sm:h-40 md:h-40 lg:h-40 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
