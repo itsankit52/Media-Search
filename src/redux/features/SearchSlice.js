@@ -4,38 +4,43 @@ const searchSlice = createSlice({
     name: "Search",
     initialState: {
         query: '',
-        activetab: 'photos',
+        activeTab: 'photos', // ✅ fixed
         result: [],
         loading: false,
         error: null
     },
     reducers: {
-        setQuary(state, action) {
+        setQuery(state, action) { // ✅ fixed spelling
             state.query = action.payload
         },
-        setActiveTabs(state, action) {
-            state.activetab = action.payload
+        setActiveTab(state, action) { // ✅ fixed name
+            state.activeTab = action.payload
         },
         setResults(state, action) {
             state.loading = false
             state.result = action.payload
         },
-        setloading(state) {
+        setLoading(state) { // ✅ naming fix
             state.loading = true
             state.error = null
         },
-
         setError(state, action) {
             state.error = action.payload
             state.loading = false
         },
         clearResult(state) {
-            state.result
+            state.result = [] // ✅ fix
         }
     }
 })
 
-
-export const { setQuary, setActiveTabs, setError, setloading, setResults, clearResult } = searchSlice.actions
+export const {
+    setQuery,
+    setActiveTab,
+    setError,
+    setLoading,
+    setResults,
+    clearResult
+} = searchSlice.actions
 
 export default searchSlice.reducer

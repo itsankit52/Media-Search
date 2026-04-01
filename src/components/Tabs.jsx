@@ -1,17 +1,25 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setActiveTabs } from '../redux/features/SearchSlice'
+import { setActiveTab } from '../redux/features/SearchSlice'
 
 const Tabs = () => {
-    const tabs = [
-        { id: 'photos', label: 'Photos', icon: '🖼️' },
-        { id: 'videos', label: 'Videos', icon: '🎬' }
-    ]
+    const tabs = useMemo(() => [
+        { id: 'photos', label: 'Photos', icon: '📷' },
+        { id: 'videos', label: 'Videos', icon: '📹' },
+        { id: 'gifs', label: 'GIFs', icon: '🎞️' }
+    ], [])
+
     const dispatch = useDispatch()
-    const activetab = useSelector((state) => state.search.activetab)
+    const activeTab = useSelector((state) => state.search.activeTab)
+
+    // 🔥 Dynamic slider position
+    const activeIndex = tabs.findIndex(tab => tab.id === activeTab)
+
+    // Handle case where activeTab doesn't exist in tabs
+    const isValidTab = activeIndex !== -1
 
     return (
-        <div className="w-full flex justify-center animate-fadeIn">
+        <div className="w-full flex justify-center">
             <div className="
                 relative
                 flex 
@@ -26,20 +34,23 @@ const Tabs = () => {
                 border
                 border-gray-200/50
             ">
-                {/* Animated Background Slider */}
-                <div 
-                    className="absolute top-1.5 bottom-1.5 w-1/2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl transition-all duration-300 ease-out shadow-md"
-                    style={{
-                        transform: `translateX(${activetab === 'photos' ? '0%' : '100%'})`,
-                        width: 'calc(50% - 6px)'
-                    }}
-                />
+                {/*Animated Slider - Only render if tab is valid */}
+                {isValidTab && (
+                    <div
+                        className="absolute top-1.5 bottom-1.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl transition-all duration-300 ease-out"
+                        style={{
+                            transform: `translateX(calc(${activeIndex} * (100% + 6px)))`, // Accounts for gap
+                            width: `calc(${100 / tabs.length}% - ${(tabs.length - 1) * 6 / tabs.length}px)` // Accounts for gaps
+                        }}
+                    />
+                )}
 
                 {tabs.map((tab) => (
                     <button
                         key={tab.id}
-                        onClick={() => dispatch(setActiveTabs(tab.id))}
+                        onClick={() => dispatch(setActiveTab(tab.id))}
                         className={`
+                            group
                             relative
                             flex-1 
                             py-2.5 sm:py-3.5 
@@ -49,25 +60,27 @@ const Tabs = () => {
                             transition-all 
                             duration-300
                             uppercase
-                            cursor-pointer
                             flex
                             items-center
                             justify-center
                             gap-2
                             z-10
-                            ${activetab === tab.id
+                            cursor-pointer
+                            focus:outline-none
+                            focus:ring-offset-1
+                            ${activeTab === tab.id
                                 ? 'text-white scale-[0.98]'
                                 : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200/50'}
                         `}
+                        aria-pressed={activeTab === tab.id}
+                        aria-label={`Switch to ${tab.label} tab`}
                     >
-                        <span className="text-base sm:text-lg transition-transform duration-300 transform group-hover:scale-110">
+                        <span className="text-base sm:text-lg transition-transform duration-300 group-hover:scale-110 inline-block">
                             {tab.icon}
                         </span>
-                        <span className="hidden xs:inline">
+
+                        <span className="hidden sm:inline">
                             {tab.label}
-                        </span>
-                        <span className="xs:hidden">
-                            {tab.id === 'photos' ? '📷' : '📹'}
                         </span>
                     </button>
                 ))}

@@ -31,7 +31,7 @@ const CollectionPage = () => {
             {/* Optional: Add a back button for mobile */}
             <Link
               to="/"
-              className="md:hidden flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-300 rounded-lg hover:bg-gray-100"
+              className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-300 rounded-lg hover:bg-gray-100 active:scale-90"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
@@ -60,25 +60,12 @@ const CollectionPage = () => {
                   : `You have ${collection.length} item${collection.length !== 1 ? 's' : ''} saved`}
               </p>
             </div>
-
-            {/* Optional: Clear all button (if you want to add functionality) */}
-            {collection.length > 0 && (
-              <button
-                onClick={() => {/* Add clear collection logic if needed */ }}
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-red-600 hover:text-red-700 transition-all duration-300 rounded-lg hover:bg-red-50 self-start sm:self-auto"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                </svg>
-                Clear All
-              </button>
-            )}
           </div>
         </div>
 
         {/* Collections Grid */}
         {collection.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 animate-fadeIn">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 animate-fadeIn">
             {collection.map((item, index) => (
               <div
                 key={index}
@@ -102,7 +89,7 @@ const CollectionPage = () => {
             </div>
             <h3 className="mt-6 sm:mt-8 text-lg sm:text-xl font-semibold text-gray-700">No collections yet</h3>
             <p className="mt-2 text-sm sm:text-base text-gray-500 text-center max-w-md">
-              Start saving your favorite images, videos, and articles from the search page
+              Start saving your favorite images, and videos from the search page
             </p>
             <Link
               to="/"
@@ -116,11 +103,9 @@ const CollectionPage = () => {
 
             {/* Tips Section */}
             <div className="mt-8 sm:mt-10 flex flex-wrap justify-center gap-3">
-              <div className="px-3 py-1.5 bg-gray-100 rounded-full text-xs text-gray-600 flex items-center gap-1">
-                <span>💡</span> Search for media
+              <div className="px-3 py-1.5 bg-gray-100 rounded-full text-xs text-gray-600 flex items-center gap-1"> Search for media
               </div>
-              <div className="px-3 py-1.5 bg-gray-100 rounded-full text-xs text-gray-600 flex items-center gap-1">
-                <span>❤️</span> Save to collection
+              <div className="px-3 py-1.5 bg-gray-100 rounded-full text-xs text-gray-600 flex items-center gap-1">Save to collection
               </div>
             </div>
           </div>

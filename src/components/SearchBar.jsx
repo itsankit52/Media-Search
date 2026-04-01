@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
-import { setQuary } from '../redux/features/SearchSlice'
+import { setQuery } from '../redux/features/SearchSlice'
 
 const SearchBar = () => {
     const [text, setText] = useState('')
@@ -11,7 +11,7 @@ const SearchBar = () => {
     const submitHandler = (e) => {
         e.preventDefault()
         if (!text.trim()) return
-        dispatch(setQuary(text))
+        dispatch(setQuery(text))
         setText('')
         inputRef.current?.blur()
     }
@@ -54,7 +54,7 @@ const SearchBar = () => {
                     blur-md
                     ${isFocused ? 'opacity-50' : ''}
                 `} />
-                
+
                 {/* Search Container */}
                 <div className="
                     relative
@@ -75,10 +75,10 @@ const SearchBar = () => {
                 ">
                     {/* Search Icon */}
                     <div className="pl-2 sm:pl-3">
-                        <svg 
-                            className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 transition-colors duration-300 group-hover:text-blue-500" 
-                            fill="none" 
-                            stroke="currentColor" 
+                        <svg
+                            className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 transition-colors duration-300 group-hover:text-blue-500"
+                            fill="none"
+                            stroke="currentColor"
                             viewBox="0 0 24 24"
                         >
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -166,41 +166,23 @@ const SearchBar = () => {
                         "
                     >
                         <span className="hidden sm:inline">Search</span>
-                        <svg 
-                            className="w-4 h-4 sm:hidden" 
-                            fill="none" 
-                            stroke="currentColor" 
+                        <svg
+                            className="w-4 h-4 sm:hidden"
+                            fill="none"
+                            stroke="currentColor"
                             viewBox="0 0 24 24"
                         >
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
-                        <svg 
-                            className="w-4 h-4 hidden sm:block group-hover/btn:translate-x-1 transition-transform duration-300" 
-                            fill="none" 
-                            stroke="currentColor" 
+                        <svg
+                            className="w-4 h-4 hidden sm:block group-hover/btn:translate-x-1 transition-transform duration-300"
+                            fill="none"
+                            stroke="currentColor"
                             viewBox="0 0 24 24"
                         >
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
                     </button>
-                </div>
-
-                {/* Keyboard Shortcut Hint */}
-                <div className="absolute right-3 top-1/2 -translate-y-1/2 hidden lg:block pointer-events-none">
-                    <kbd className="
-                        px-2 
-                        py-1 
-                        text-xs 
-                        font-mono 
-                        text-gray-500 
-                        bg-gray-100 
-                        rounded-md 
-                        border 
-                        border-gray-300
-                        shadow-sm
-                    ">
-                        ⌘K
-                    </kbd>
                 </div>
             </form>
         </div>

@@ -36,12 +36,17 @@ const ResultCard = ({ item }) => {
                         "
                     />
                 )}
-
+                {item.type === 'gif' && (
+                    <img
+                        src={item.src}
+                        alt="gif"
+                        className="w-full h-full object-cover"
+                    />
+                )}
                 {item.type === 'video' && (
                     <video
                         src={item.src}
                         autoPlay
-                        loop
                         muted
                         className="w-full h-full object-cover"
                     />

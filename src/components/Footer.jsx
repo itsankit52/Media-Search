@@ -10,11 +10,10 @@ const Footer = () => {
                     {/* Copyright Text */}
                     <div className="flex items-center gap-2">
                         <span className="text-sm text-gray-500">
-                            © {currentYear} Media Scope
+                            © {currentYear}
                         </span>
-                        <span className="text-gray-300">•</span>
                         <span className="text-sm text-gray-500">
-                            Made with by Ankit
+                            Ankit Thakur
                         </span>
                     </div>
 

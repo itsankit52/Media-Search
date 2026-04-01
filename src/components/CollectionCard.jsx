@@ -30,7 +30,7 @@ const CollectionCard = ({ item }) => {
             ${isRemoving ? 'animate-fadeOut scale-95' : ''}
         `}>
             {/* Media Container */}
-            <div className="relative w-full h-48 sm:h-52 md:h-56 lg:h-60 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+            <div className="relative w-full h-40 sm:h-40 md:h-40 lg:h-40 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
                 {/* Type Badge */}
                 <div className="absolute top-3 left-3 z-10">
                     <span className="
@@ -95,7 +95,7 @@ const CollectionCard = ({ item }) => {
             </div>
 
             {/* Content */}
-            <div className="p-3 sm:p-4 flex flex-col gap-2">
+            <div className="p-3 sm:p-4 flex flex-direction-col gap-2">
                 {/* Title with Icon */}
                 <div className="flex items-start gap-2">
                     {item.type === 'photo' ? (

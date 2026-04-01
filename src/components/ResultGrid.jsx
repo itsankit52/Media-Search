@@ -1,27 +1,27 @@
 import { useState, useEffect } from 'react'
-import { fetchPhoto, fetchVideo } from '../api/mediaapi'
-import { setloading, setError, setResults } from '../redux/features/SearchSlice'
+import { fetchGifs, fetchPhoto, fetchVideo } from '../api/mediaapi'
+import { setLoading, setError, setResults } from '../redux/features/SearchSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import ResultCard from './ResultCard'
 const ResultGrid = () => {
     const dispatch = useDispatch()
 
-    const { query, activetab, result, loading, error } = useSelector((store) => store.search)
+    const { query, activeTab, result, loading, error } = useSelector((store) => store.search)
 
     const [page, setPage] = useState(1);
     //// eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         setPage(1);
-    }, [query, activetab]);
+    }, [query, activeTab]);
 
     useEffect(() => {
         if (!query) return
 
         const getData = async () => {
             try {
-                dispatch(setloading())
+                dispatch(setLoading())
                 let data = []
-                if (activetab === 'photos') {
+                if (activeTab === 'photos') {
                     let res = await fetchPhoto(query, page)
                     data = res.results.map((item) => ({
                         id: item.id,
@@ -34,7 +34,11 @@ const ResultGrid = () => {
                     }))
                 }
 
-                if (activetab === 'videos') {
+                if (activeTab === "gifs") {
+                    data = await fetchGifs(query);
+                }
+
+                if (activeTab === 'videos') {
                     let res = await fetchVideo(query, page)
                     data = res.videos.map((item) => ({
                         id: item.id,
@@ -57,7 +61,7 @@ const ResultGrid = () => {
         }
 
         getData()
-    }, [query, activetab, page, dispatch])
+    }, [query, activeTab, page, dispatch])
 
     // Error UI with Animation
     if (error) {
@@ -140,12 +144,12 @@ const ResultGrid = () => {
                     No results found
                 </h1>
                 <p className="mt-2 text-sm sm:text-base text-gray-500 text-center max-w-md">
-                    We couldn't find any {activetab} for "{query}". Try searching with different keywords.
+                    We couldn't find any {activeTab} for "{query}". Try searching with different keywords.
                 </p>
                 <div className="mt-6 flex gap-3">
                     <div className="px-4 py-2 bg-gray-100 rounded-full text-xs text-gray-600">Try "nature"</div>
-                    <div className="px-4 py-2 bg-gray-100 rounded-full text-xs text-gray-600">Try "sunset"</div>
-                    <div className="px-4 py-2 bg-gray-100 rounded-full text-xs text-gray-600">Try "city"</div>
+                    <div className="px-4 py-2 bg-gray-100 rounded-full text-xs text-gray-600">Try "Animals"</div>
+                    <div className="px-4 py-2 bg-gray-100 rounded-full text-xs text-gray-600">Try "Flowers"</div>
                 </div>
             </div>
         )
@@ -159,7 +163,13 @@ const ResultGrid = () => {
                     <div className="flex items-center gap-2">
                         <div className="w-1 h-6 bg-gradient-to-b from-blue-500 to-purple-600 rounded-full"></div>
                         <h2 className="text-lg sm:text-xl font-semibold text-gray-800">
-                            {activetab === 'photos' ? '📸 Photos' : '🎬 Videos'}
+                            {
+                                activeTab === 'photos'
+                                    ? '📸 Photos'
+                                    : activeTab === 'videos'
+                                        ? '🎬 Videos'
+                                        : '🎞️ GIFs'
+                            }
                         </h2>
                     </div>
                     <div className="text-sm text-gray-500">
