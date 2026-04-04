@@ -1,4 +1,4 @@
-import React from 'react'
+6import React from 'react'
 import { useSelector } from 'react-redux'
 import CollectionCard from '../components/CollectionCard'
 import { Link } from 'react-router-dom'
@@ -20,6 +20,7 @@ const CollectionPage = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
                 </svg>
               </div>
+              {/*Heading*/}
               <div>
                 <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent transition-all duration-300 group-hover:scale-105 transform origin-left">
                   Media Scope
